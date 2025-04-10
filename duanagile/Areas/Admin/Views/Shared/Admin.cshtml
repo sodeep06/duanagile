@@ -1,0 +1,83 @@
+﻿<div class="container">
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+    <div class="sidebar">
+    <h2>Admin Dashboard</h2>
+    <ul>
+        <li><a href="@Url.Action("ManageFoodItems")">Manage Food Items</a></li>
+        <li><a href="@Url.Action("ManageOrders")">Manage Orders</a></li>
+        <li><a href="@Url.Action("ManageCarts")">Manage Carts</a></li>
+    </ul>
+</div>
+<style>
+    /* Layout cho container */
+.container {
+    display: flex;  /* Sử dụng Flexbox để chia layout */
+    min-height: 100vh;  /* Đảm bảo chiều cao của container đầy đủ */
+}
+
+/* Phần chính (main content) */
+main {
+    flex: 1;  /* Chiếm toàn bộ không gian còn lại */
+    padding: 20px;
+    background-color: #f9f9f9;  /* Màu nền nhẹ cho phần chính */
+}
+
+/* Thanh sidebar */
+.sidebar {
+    width: 250px;  /* Chiều rộng cố định cho sidebar */
+    background-color: #343a40;  /* Màu nền tối cho sidebar */
+    color: white;  /* Màu chữ sáng */
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);  /* Tạo hiệu ứng đổ bóng */
+}
+
+/* Tiêu đề trong sidebar */
+.sidebar h2 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+/* Danh sách các liên kết trong sidebar */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+/* Hiệu ứng khi hover trên các liên kết */
+.sidebar ul li a:hover {
+    background-color: #007bff;
+}
+
+/* Đảm bảo rằng khi kích thước màn hình nhỏ hơn, sidebar sẽ gập lại */
+media (max-width: 768px) {
+    .container {
+        flex-direction: column;  /* Thay đổi layout thành cột khi màn hình nhỏ */
+    }
+
+    .sidebar {
+        width: 100%;  /* Chiều rộng full screen cho sidebar khi màn hình nhỏ */
+        box-shadow: none;  /* Tắt bóng đổ khi sidebar ở chế độ mobile */
+    }
+
+    main {
+        padding: 10px;
+    }
+}
+
+</style>

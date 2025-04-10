@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Đăng Nhập";
+}
+
+@{
+    Layout = null;
+}
+
+<h2>Đăng Nhập</h2>
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+<form method="post" asp-action="Login">
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required class="form-control" />
+    </div>
+    <div>
+        <label for="password">Mật khẩu:</label>
+        <input type="password" name="password" id="password" required class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Đăng Nhập</button>
+</form>
+
+@if (User.Identity != null && User.Identity.IsAuthenticated)
+{
+    <li><a asp-controller="UserLogin" asp-action="Logout">Đăng Xuất</a></li>
+    <li>Chào, @User.Identity.Name</li>
+}
+else
+{
+    <li><a asp-controller="UserLogin" asp-action="Login">Đăng Nhập</a></li>
+}
+<ul class="navbar-nav">
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+    {
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Cart" asp-action="Index">Giỏ hàng</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Orders" asp-action="Index">Danh sách đơn hàng</a>
+        </li>
+    }
+</ul>
+
+
+

@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Hieu</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <!--[if IE 7]><link rel="stylesheet" href="css/ie7.css" type="text/css"><![endif]-->
+</head>
+<body>
+    <div class="page">
+        <!-- Header -->
+        <div class="header">
+            <a href="index.html" id="logo"><img src="images/logo.gif" alt="Logo"></a>
+            <nav>
+                <ul class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Register">Đăng Ký</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="FoodItem" asp-action="Search">Sản Phẩm</a>
+                    </li>
+
+                </ul>
+
+                <ul>
+                    @if (User.Identity != null && User.Identity.IsAuthenticated)
+                    {
+                        <li><a asp-controller="UserLogin" asp-action="Logout">Đăng Xuất</a></li>
+                        <li>Chào, @User.Identity.Name</li>
+                    }
+                    else
+                    {
+                        <li><a asp-controller="UserLogin" asp-action="Login">Đăng Nhập</a></li>
+                    }
+                </ul>
+
+                <ul class="navbar-nav">
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+                    {
+                        <!-- Hiển thị Giỏ hàng và Danh sách đơn hàng khi đã đăng nhập -->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Cart" asp-action="Index">Giỏ hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Orders" asp-action="Index">Danh sách đơn hàng</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <!-- Nếu chưa đăng nhập, hiển thị thông báo yêu cầu đăng nhập khi nhấn vào -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0);" onclick="alert('Bạn cần đăng nhập để xem giỏ hàng!');">Giỏ hàng</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0);" onclick="alert('Bạn cần đăng nhập để xem danh sách đơn hàng!');">Danh sách đơn hàng</a>
+                        </li>
+                    }
+                </ul>
+
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+
+            <!-- Body Content -->
+            <div class="body">
+                <ul class="blog">
+                    <li>
+                        <div>
+                            <a href="#"><img src="images/pizaaahs.jpg" height="230" width="250" alt="Pizza"></a>
+                            <p>hahaha</p>
+                            <a href="FoodItem/Search">Click to read more</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="#"><img src="images/congphuong.jpg" width="250" height="230" alt="Cong Phuong"></a>
+                            <p>Gà kia ai rán mà giòn.</p>
+                            <a href="FoodItem/Search">Click to read more</a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="#"><img src="images/dacbiet.jpg" alt="Đặc Biệt" width="250" height="230"></a>
+                            <p>Heheheheheheheh.</p>
+                            <a href="Combo/SearchComBo">Click to read more</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="services.html">Gallery</a></li>
+            </ul>
+            <p>Copyright &copy; 2012 <a href="#">Company Name</a>. All rights reserved | Website Template By <a target="_blank" href="http://www.freewebsitetemplates.com/">freewebsitetemplates.com</a></p>
+            <div class="connect">
+                <a href="#" id="facebook">Facebook</a>
+                <a href="#" id="twitter">Twitter</a>
+                <a href="#" id="vimeo">Vimeo</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

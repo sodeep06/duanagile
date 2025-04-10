@@ -1,0 +1,109 @@
+﻿@model IEnumerable<duanagile.Models.FoodItem>
+
+@{
+    Layout = "Search";
+}
+
+<style>
+    /* Tổng quan */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa; /* Màu nền */
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Tiêu đề chính */
+    .food-title {
+        text-align: center;
+        font-size: 2rem;
+        margin: 20px 0;
+        color: #333;
+    }
+
+    /* Danh sách món ăn */
+    .food-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    /* Một món ăn */
+    .food-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 15px;
+        width: 300px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .food-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+    /* Tên món ăn */
+    .food-name {
+        font-size: 1.5rem;
+        color: #007bff;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    /* Mô tả món ăn */
+    .food-description {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 10px;
+        text-align: justify;
+    }
+
+    /* Giá món ăn */
+    .food-price {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #28a745;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+        .food-price span {
+            font-size: 1.2rem;
+            color: #dc3545;
+        }
+
+    /* Link xem chi tiết */
+    .food-details-link {
+        display: block;
+        text-align: center;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+        .food-details-link:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<h2 class="food-title">Các sản phẩm</h2>
+
+<div class="food-list">
+    @foreach (var item in Model)
+    {
+        <div class="food-item">
+            <h3 class="food-name">@item.Name</h3>
+            <p class="food-description">@item.Description</p>
+            <p class="food-price">Price: <span>@item.Price.ToString("C")</span></p>
+            <a asp-action="Details" asp-route-id="@item.FoodItemID" class="food-details-link">View Details</a>
+        </div>
+    }
+</div>
+

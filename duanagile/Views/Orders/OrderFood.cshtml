@@ -1,0 +1,29 @@
+﻿@model IEnumerable<duanagile.Models.FoodItem>
+
+<h2>Danh sách món ăn</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Thao tác</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model) // ✅ Duyệt qua từng món ăn trong danh sách
+        {
+            <tr>
+                <td>@item.Name</td>  
+                <td>@item.Price.ToString("C")</td>
+                <td>
+                    <form method="post" action="@Url.Action("AddToCart", "Cart")">
+                        <input type="hidden" name="foodItemId" value="@item.FoodItemID" />
+                        <input type="number" name="quantity" value="1" min="1" />
+                        <button type="submit" class="btn btn-primary">Thêm vào giỏ</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

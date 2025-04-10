@@ -1,0 +1,31 @@
+﻿@model IEnumerable<duanagile.Models.FoodItem>
+
+<h2>Manage Food Items</h2>
+<a href="@Url.Action("AddFoodItem")" class="btn btn-primary">Add New Food Item</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Price</td>
+                <td>@item.Category</td>
+                <td>
+                    <a href="@Url.Action("EditFoodItem", new { id = item.FoodItemID })" class="btn btn-warning">Edit</a>
+                    <form method="post" action="@Url.Action("DeleteFoodItem", new { id = item.FoodItemID })" style="display:inline;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

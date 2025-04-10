@@ -1,0 +1,85 @@
+﻿@{
+    ViewData["Title"] = "Manage Carts";
+}
+
+<h2>Manage Carts</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cart ID</th>
+            <th>User</th>
+            <th>Items Count</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cart in Model)
+        {
+            <tr>
+                <td>@cart.CartID</td>
+                <td>@cart.UserID</td>
+                <td>@cart.CartItems.Count</td>
+                <td>
+                    <!-- More actions like view cart details or delete can be added here -->
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Styles {
+    <style>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .table th, .table td {
+                padding: 10px;
+                text-align: center;
+                border: 1px solid #ddd;
+            }
+
+            .table th {
+                background-color: #4CAF50;
+                color: white;
+                font-weight: bold;
+            }
+
+            .table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            .table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            .table td:last-child {
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+            }
+
+            .table td a {
+                text-decoration: none;
+                padding: 5px 15px;
+                background-color: #007bff;
+                color: white;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+                .table td a:hover {
+                    background-color: #0056b3;
+                }
+
+            .table tbody tr.no-data td {
+                text-align: center;
+                color: #888;
+                font-style: italic;
+            }
+    </style>
+}
+    

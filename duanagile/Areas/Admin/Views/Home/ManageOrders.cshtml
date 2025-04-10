@@ -1,0 +1,32 @@
+﻿@model IEnumerable<duanagile.Models.Order>
+
+<h2>Manage Orders</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>User</th>
+            <th>Status</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <tr>
+                <td>@order.OrderID</td>
+                <td>@order.UserID</td>
+                <td>@order.Status</td>
+                <td>
+                    @if (order.Status == "Pending")
+                    {
+                        <form method="post" action="@Url.Action("CompleteOrder", new { id = order.OrderID })" style="display:inline;">
+                            <button type="submit" class="btn btn-success">Complete Order</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
